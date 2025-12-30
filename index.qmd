@@ -1,0 +1,20 @@
+---
+title: " Statistics with R project-- Template"
+subtitle: "material"
+---
+
+## Introduction
+
+zeineb chekir
+
+## Status
+
+In progress
+
+
+## Related Pages
+
+
+## Author
+
+Abdallah Khemais
