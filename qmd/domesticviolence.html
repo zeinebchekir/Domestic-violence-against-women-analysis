@@ -578,6 +578,7 @@ Si la répondante a subi des violences domestiques (Yes / No)
 </div>
 </div>
 </div>
+<p>L’analyse de la distribution de l’âge montre que les femmes victimes de violence domestique sont réparties sur une plage d’âge plus large que les non victimes. Alors que les femmes non victimes sont majoritairement concentrées entre 20 et 30 ans, les victimes présentent une distribution étendue jusqu’à 50 ans et plus. Cela suggère que l’âge, bien qu’informatif, ne constitue pas à lui seul un facteur discriminant, mais pourrait interagir avec d’autres variables socio-économiques et familiales.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dv, <span class="fu">aes</span>(<span class="at">x =</span> Violence, <span class="at">y =</span> Age, <span class="at">fill =</span> Violence)) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>

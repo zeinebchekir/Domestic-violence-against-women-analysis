@@ -1,7 +1,9 @@
 ---
 title: "Exploration statistique de la violence domestique envers les femmes à partir de données sociales"
 date: '2025-12-27'
-format: html
+format: 
+  html:
+    output-file: "index.html"
 ---
 
 ```{r setup, include=FALSE}
@@ -21,15 +23,9 @@ print(list.files())
 cat("Fichiers dans le dossier qmd/:\n")
 print(list.files("qmd/"))
 # Essayer les deux noms possibles
-if(file.exists("D:/R programming/Project_R_Template/qmd/Domestic_violence.csv")) {
-  dv <- read.csv("D:/R programming/Project_R_Template/qmd/Domestic_violence.csv")
+if(file.exists("C:/Users/User/Desktop/zeineb/Domestic-violence-against-women-analysis/qmd/Domestic_violence.csv")) {
+  dv <- read.csv("C:/Users/User/Desktop/zeineb/Domestic-violence-against-women-analysis/qmd/Domestic_violence.csv")
   cat("Fichier chargé: Domestic_violence.csv\n")
-} else if(file.exists("D:/R programming/Project_R_Template/qmd/Domestic violence.csv")) {
-  dv <- read.csv("D:/R programming/Project_R_Template/qmd/Domestic violence.csv")
-  cat("Fichier chargé: Domestic violence.csv\n")
-} else if(file.exists("D:/R programming/Project_R_Template/qmd/domestic_violence.csv")) {
-  dv <- read.csv("D:/R programming/Project_R_Template/qmd/domestic_violence.csv")
-  cat("Fichier chargé: domestic_violence.csv\n")
 } else {
   # Créer des données fictives pour le test
   cat("Fichier non trouvé. Création de données fictives.\n")}
@@ -273,6 +269,7 @@ ggplot(dv, aes(x = Age, fill = Violence, color = Violence)) +
   theme_minimal()
 
 ```
+L’analyse de la distribution de l’âge montre que les femmes victimes de violence domestique sont réparties sur une plage d’âge plus large que les non victimes. Alors que les femmes non victimes sont majoritairement concentrées entre 20 et 30 ans, les victimes présentent une distribution étendue jusqu’à 50 ans et plus. Cela suggère que l’âge, bien qu’informatif, ne constitue pas à lui seul un facteur discriminant, mais pourrait interagir avec d’autres variables socio-économiques et familiales.
 ```{r}
 ggplot(dv, aes(x = Violence, y = Age, fill = Violence)) +
   geom_boxplot(alpha = 0.6) +
