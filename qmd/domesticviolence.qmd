@@ -34,11 +34,9 @@ library("dplyr")
 library("ggplot2")
 library(knitr)
 # Essayer les deux noms possibles
-if(file.exists("https://github.com/zeinebchekir/Domestic-violence-against-women-analysis/blob/main/qmd/Domestic_violence.csv")) {
-  dv <- read.csv("https://github.com/zeinebchekir/Domestic-violence-against-women-analysis/blob/main/qmd/Domestic_violence.csv")
+dv <- read.csv("https://raw.githubusercontent.com/zeinebchekir/Domestic-violence-against-women-analysis/refs/heads/main/qmd/Domestic_violence.csv")
   cat("Fichier chargé: Domestic_violence.csv\n")
-} else {cat("Fichier non trouvé. Création de données fictives.\n")}
-  # Créer des données fictives pour le test
+
 dv$Employment <- trimws(dv$Employment)  
 
 ```
