@@ -3,35 +3,16 @@ title: "Exploration statistique de la violence domestique envers les femmes à p
 date: '2025-12-27'
 format: 
   html:
+    theme: cosmo
+    toc: true
     output-file: "index.html"
+webr:
+  show-startup-message: false
+  emulate-r: true
+  packages: ["readxl", "dplyr", "ggplot2", "gridExtra", "gplots", "knitr", "tidyr", "scales"] 
+filters:  
+  - webr
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, # Affiche le code
-warning = FALSE, # Masque les warnings
-message = FALSE, # Masque les messages
-eval = TRUE)
-library("gplots", quietly=TRUE, warn.conflicts = FALSE)
-library("dplyr")
-library("ggplot2")
-library(knitr)
-cat("Répertoire de travail actuel:", getwd(), "\n")
-
-# Lister les fichiers disponibles
-cat("Fichiers dans le répertoire:\n")
-print(list.files())
-cat("Fichiers dans le dossier qmd/:\n")
-print(list.files("qmd/"))
-# Essayer les deux noms possibles
-if(file.exists("C:/Users/User/Desktop/zeineb/Domestic-violence-against-women-analysis/qmd/Domestic_violence.csv")) {
-  dv <- read.csv("C:/Users/User/Desktop/zeineb/Domestic-violence-against-women-analysis/qmd/Domestic_violence.csv")
-  cat("Fichier chargé: Domestic_violence.csv\n")
-} else {
-  # Créer des données fictives pour le test
-  cat("Fichier non trouvé. Création de données fictives.\n")}
-dv$Employment <- trimws(dv$Employment)  
-```
-
 
 
 # Introduction
@@ -41,9 +22,28 @@ Ce projet vise à analyser statistiquement un dataset portant sur la violence do
 
 L’objectif principal est d’explorer les corrélations entre ces facteurs et l’expérience de la violence domestique, afin d’identifier les profils les plus à risque et de fournir des insights pertinents pour la prise de décision et la sensibilisation sur ce problème social. Cette analyse permettra également de mettre en lumière l’importance de l’éducation, de l’emploi et du statut marital dans la vulnérabilité des femmes face à la violence domestique.
 
+
 # Déscription de la dataset
 
 Le dataset étudié concerne la violence domestique à l’encontre des femmes. Les données ont été extraites d’une enquête menée auprès de femmes dans une région rurale d’un pays en développement et sont disponibles sur Kaggle. Le dataset comprend 347 observations, incluant à la fois des femmes ayant subi des violences et des femmes n’en ayant pas été victimes. Les variables recueillies sont de nature socio-économique et démographique, telles que l’âge, le niveau d’éducation, le statut marital, l’emploi et le revenu des répondantes. Le tableau suivant présente la liste des colonnes ainsi que leurs désignations respectives.
+
+## Chargement du dataset
+```{webr-r}
+library("gplots", quietly=TRUE, warn.conflicts = FALSE)
+library("dplyr")
+library("ggplot2")
+library(knitr)
+# Essayer les deux noms possibles
+if(file.exists("https://github.com/zeinebchekir/Domestic-violence-against-women-analysis/blob/main/qmd/Domestic_violence.csv")) {
+  dv <- read.csv("https://github.com/zeinebchekir/Domestic-violence-against-women-analysis/blob/main/qmd/Domestic_violence.csv")
+  cat("Fichier chargé: Domestic_violence.csv\n")
+} else {cat("Fichier non trouvé. Création de données fictives.\n")}
+  # Créer des données fictives pour le test
+dv$Employment <- trimws(dv$Employment)  
+
+```
+
+
 <table class="table table-striped">
 <caption>Description du dataset de violence domestique</caption>
 <thead>
@@ -92,9 +92,12 @@ Le dataset étudié concerne la violence domestique à l’encontre des femmes. 
 </tbody>
 </table>
 
+
+
+
 ## Statistique générale du dataset
 
-```{r}
+```{webr-r}
 
 # Calcul des statistiques de base
 stats_violence <- function(data) {
@@ -178,11 +181,29 @@ p2 <- ggplot(violence_dist, aes(x = "", y = Pourcentage, fill = Statut)) +
 # Afficher les graphiques côte à côte
 library(gridExtra)
 grid.arrange(p1, p2, ncol = 2)
+
 ```
+
+
+
+### Compter les occurrences par catégorie
+```{webr-r}
+
+# Pour d'autres colonnes catégorielles
+dv$education <- factor(dv$Education)
+dv$partner <- factor(dv$Marital.status)
+dv$Employment <-factor(dv$Employment)
+sapply(dv[, sapply(dv, is.factor)], table)
+table(dv$Violence)
+prop.table(table(dv$Violence))  # pourcentage
+```
+
+
+
 # Analyse exploratoire des données
 ##  Statistiques d'âge par statut de violence
 
-```{r}
+```{webr-r}
 dv <- dv %>%
 mutate(AgeGroup = case_when(
 Age >= 15 & Age <= 24 ~ "15-24",
@@ -193,7 +214,7 @@ TRUE ~ NA_character_
 ))
 head(dv)
 ```
-```{r}
+```{webr-r}
 dv <- dv %>%
   mutate(AgeGroup = case_when(
     Age >= 15 & Age <= 24 ~ "15-24",
@@ -249,7 +270,7 @@ ggplot(summary_age, aes(x = AgeGroup, y = Count, fill = Violence)) +
 
 ```
 
-```{r}
+```{webr-r}
 dv$Violence <- factor(dv$Violence,
                         levels = c("no", "yes"),
                         labels = c("no", "yes"))
@@ -270,7 +291,7 @@ ggplot(dv, aes(x = Age, fill = Violence, color = Violence)) +
 
 ```
 L’analyse de la distribution de l’âge montre que les femmes victimes de violence domestique sont réparties sur une plage d’âge plus large que les non victimes. Alors que les femmes non victimes sont majoritairement concentrées entre 20 et 30 ans, les victimes présentent une distribution étendue jusqu’à 50 ans et plus. Cela suggère que l’âge, bien qu’informatif, ne constitue pas à lui seul un facteur discriminant, mais pourrait interagir avec d’autres variables socio-économiques et familiales.
-```{r}
+```{webr-r}
 ggplot(dv, aes(x = Violence, y = Age, fill = Violence)) +
   geom_boxplot(alpha = 0.6) +
   labs(
@@ -285,7 +306,7 @@ Le boxplot montre que la médiane d’âge des femmes ayant déclaré des violen
 
 ## Statistiques d'educations par status de violence 
 
-```{r}
+```{webr-r}
 df_pie <- dv %>%
   group_by(Education, Violence) %>%
   summarise(Count = n(), .groups = 'drop') %>%
@@ -311,7 +332,7 @@ L’analyse montre que les femmes ayant un niveau d’éducation primaire prése
 
 
 
-```{r}
+```{webr-r}
 # Tableau croisé Employment × Violence
 emploi_violence <- dv %>%
   group_by(Employment, Violence) %>%
@@ -425,7 +446,7 @@ if(chi_test$p.value < 0.05) {
 L’analyse révèle que les femmes au chômage concentrent la majorité des cas de violence, représentant 87 % de l’ensemble des femmes victimes. Par ailleurs, la proportion de victimes rapportée à l’effectif total de ce groupe est également la plus élevée de 27% , indiquant que l’emploi pourrait jouer un rôle protecteur vis-à-vis de l’exposition à la violence.
 
 ## Statistique  de revenue par status de violence 
-```{r}
+```{webr-r}
 library(dplyr)
 
 dv %>%
@@ -448,7 +469,7 @@ Médiane : La médiane est de 0 pour les deux groupes, ce qui indique que la moi
 
 Effectifs (n) : Le groupe des femmes non victimes est plus nombreux (261) que celui des victimes (86).
 ## Statisqtique des femmes avec emploi ou semi-emploi et le revenu avec le status de violence 
-```{r}
+```{webr-r}
 
 dv <- dv %>%
   mutate(tranche_revenu = case_when(
@@ -502,7 +523,7 @@ Même si certaines tranches de revenu présentent un pourcentage de victimes lé
 Ainsi, le revenu, considéré seul selon les tranches définies, ne semble pas être un facteur déterminant du taux de violence dans ce dataset.
 
 ## Statistique par status marital 
-```{r}
+```{webr-r}
 table(dv$Marital.status)
 dv_pct <- dv %>%
   group_by(Marital.status, Violence) %>%
@@ -528,7 +549,7 @@ Les barres représentant les femmes non mariées sont plus dominées par la cat�
 
 
 ## Revenu × Statut marital × Violence
-```{r}
+```{webr-r}
 ggplot(dv, aes(x = tranche_revenu, fill = Violence)) +
   geom_bar(position = "fill") +
   facet_wrap(~ Marital.status) +
@@ -539,7 +560,7 @@ ggplot(dv, aes(x = tranche_revenu, fill = Violence)) +
 ```
 
 ### Âge × Statut marital × Violence (âge contextuel)
-```{R}
+```{webr-r}
 ggplot(dv, aes(x = AgeGroup, fill = Violence)) +
   geom_bar(position = "fill") +
   facet_wrap(~ Marital.status) +
@@ -557,11 +578,12 @@ Le pourcentage de victimes reste relativement faible, inférieur à 10% pour la 
 Cela indique que le mariage est associé à un risque accru de violence, alors que les femmes célibataires, divorcées ou veuves présentent des proportions beaucoup plus faibles.
 
 ### status marital x emploi
-```{r}
+```{webr-r}
 tab_me <- table(dv$Marital.status, dv$Employment)
 tab_me
 prop.table(tab_me, margin = 1) * 100
-```{r}
+```
+```{webr-r}
 library(tidyr)
 
 heat_data <- dv %>%
@@ -597,4 +619,6 @@ Les femmes mariées au chômage sont donc le groupe le plus vulnérable, avec un
 Même les femmes mariées ayant un emploi ou un semi-emploi présentent des proportions plus élevées que leurs homologues non mariées, ce qui suggère que le mariage est associé à un risque accru, indépendamment de l’emploi.
 
 
+# Conclusion
 
+La violence envers les femmes constitue une atteinte grave à leur dignité, à leur sécurité et à leur intégrité physique et psychologique. L’analyse montre que l’éducation et le statut social jouent un rôle crucial dans la protection et l’autonomie des femmes, leur permettant de mieux se défendre et de sécuriser leur environnement. Le choix d’un partenaire respectueux est également déterminant, car il peut contribuer à leur sécurité ou, au contraire, les exposer à des risques. Il est essentiel que les femmes connaissent leurs droits et recours légaux, et qu’elles n’hésitent jamais à les faire valoir. Chaque femme est précieuse, digne de respect et de protection, et sa vie ne doit jamais être menacée par la violence.
