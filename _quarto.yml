@@ -25,15 +25,6 @@ format:
     toc: true
     number-sections: true
     #embed-resources: true
-  pdf:
-    toc: false
-    number-sections: true
-    colorlinks: true
-    papersize: a4
-    geometry:
-      - top=20mm
-      - left=25mm
-      - bottom=25mm
 bibliography: bib.bib
 csl: apa.csl
 
