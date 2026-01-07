@@ -16,8 +16,7 @@ website:
         contents:
           - zeinebchekir742@gmail.com
           - https://github.com/zeinebchekir
-         
-      
+        
 format:
   html:
     theme: cosmo

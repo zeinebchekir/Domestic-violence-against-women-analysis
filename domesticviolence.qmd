@@ -468,57 +468,21 @@ Médiane : La médiane est de 0 pour les deux groupes, ce qui indique que la moi
 Effectifs (n) : Le groupe des femmes non victimes est plus nombreux (261) que celui des victimes (86).
 ## Statisqtique des femmes avec emploi ou semi-emploi et le revenu avec le status de violence 
 ```{webr-r}
+# 1. Histogramme avec densité
+ggplot(dv, aes(x = Income, fill = Violence)) +
+  geom_histogram(aes(y = ..density..), 
+                 position = "identity", alpha = 0.5) +
+  geom_density(alpha = 0.6)
 
-dv <- dv %>%
-  mutate(tranche_revenu = case_when(
-    Income >= 0 & Income <8  ~ "0k",
-    Income >=8 & Income <=1000 ~ "8-1K",
-    Income > 1000 & Income<= 6000   ~ "1k-6k",
-    Income > 6000   & Income <= 8000  ~ "6k-8k",
-    Income > 8000  & Income <= 10000  ~ "8k-10k",
-    Income > 10000  & Income <= 15000  ~ "10k-15k",
-    Income > 15000  & Income <= 20000  ~ "15k-20k",
-    Income > 20000   & Income <= 30000 ~ "20k-30k",                   Income >30000 ~ ">30k",
-    TRUE                               ~ NA_character_   # valeurs manquantes ou négatives
-  ))
-dv$tranche_revenu <- factor(dv$tranche_revenu,
-                            levels = c("0k", "8-1K", 
-                                       "1k-6k", "6k-8k", "8k-10k", "10k-15k", 
-                                       "15k-20k", "20k-30k", ">30k"))
-
-# Pourcentage de victimes dans chaque tranche de revenu
-summary_revenu <- dv %>%
-  group_by(tranche_revenu) %>%
-  summarise(
-    total = n(),
-    victimes = sum(Violence == "yes"),
-    pct_victimes = victimes / total * 100
-  )
-
-summary_revenu
-library(ggplot2)
-
-ggplot(summary_revenu, aes(x = tranche_revenu, y = pct_victimes, fill = tranche_revenu)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label = paste0(round(pct_victimes,1), "%")), vjust = -0.5) +
-  labs(title = "Pourcentage de victimes selon la tranche de revenu",
-       x = "Tranche de revenu", y = "Pourcentage de victimes (%)") +
-  theme_minimal() +
-  theme(legend.position = "none",
-        axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-# Tableau croisé
-tab <- table(dv$tranche_revenu, dv$Violence)
-tab
-
-chisq.test(tab)
+# 2. Violin plot (plus informatif que boxplot)
+ggplot(dv, aes(x = Violence, y = Income, fill = Violence)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1)
 
 
 ```
-Une p-value de 0,526 indique qu’il n’existe pas de preuve statistiquement significative montrant que le revenu (tranche_revenu) influence le fait d’être victime de violence.
-Même si certaines tranches de revenu présentent un pourcentage de victimes légèrement plus élevé ou plus faible, ces différences peuvent simplement résulter du hasard.
-Ainsi, le revenu, considéré seul selon les tranches définies, ne semble pas être un facteur déterminant du taux de violence dans ce dataset.
+Dans cette analyse, nous avons découvert quelque chose de crucial : les femmes victimes de violence gagnent en moyenne deux fois moins que les autres. Leur boîte rouge est plus basse sur le graphique, ce qui signifie que leurs revenus sont concentrés près de zéro.
+ même un petit revenu de 500€ par mois fait une différence. Ce n'est pas une question de richesse, c'est une question d'indépendance. Une femme qui a ne serait-ce qu'un petit revenu a plus de choix, plus de possibilités de partir si nécessaire.
 
 ## Statistique par status marital 
 ```{webr-r}
