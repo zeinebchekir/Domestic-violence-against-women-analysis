@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "",
+    "text": "La violence domestique envers les femmes est un problème social majeur dans de nombreux pays, affectant gravement la santé physique, psychologique et sociale des victimes. Comprendre les facteurs qui contribuent à cette violence est essentiel pour développer des stratégies de prévention efficaces et des politiques adaptées.\nCe projet vise à analyser statistiquement un dataset portant sur la violence domestique dans une zone rurale d’un pays en développement.\nL’objectif principal est d’explorer les corrélations entre ces facteurs et l’expérience de la violence domestique, afin d’identifier les profils les plus à risque et de fournir des insights pertinents pour la prise de décision et la sensibilisation sur ce problème social. Cette analyse permettra également de mettre en lumière l’importance de l’éducation, de l’emploi et du statut marital dans la vulnérabilité des femmes face à la violence domestique."
+  },
+  {
+    "objectID": "index.html#chargement-du-dataset",
+    "href": "index.html#chargement-du-dataset",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "2.1 Chargement du dataset",
+    "text": "2.1 Chargement du dataset\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nDescription du dataset de violence domestique\n\n\n\n\nVariable\n\n\nType\n\n\nDescription\n\n\n\n\n\n\nSL.No\n\n\nNumérique\n\n\nNuméro de l’enregistrement\n\n\n\n\nAge\n\n\nNumérique\n\n\nÂge de la répondante\n\n\n\n\nEducation\n\n\nCatégorie\n\n\nNiveau d’éducation (None, Primary, Secondary, Tertiary)\n\n\n\n\nEmployment\n\n\nCatégorie\n\n\nStatut professionnel (unemployed,semi employed,employed.)\n\n\n\n\nIncome\n\n\nNumérique\n\n\nRevenu de la répondante (0 = aucun revenu)\n\n\n\n\nMarital status\n\n\nCatégorie\n\n\nStatut marital (Married, Unmarried)\n\n\n\n\nViolence\n\n\nCatégorie\n\n\nSi la répondante a subi des violences domestiques (Yes / No)"
+  },
+  {
+    "objectID": "index.html#statistique-générale-du-dataset",
+    "href": "index.html#statistique-générale-du-dataset",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "2.2 Statistique générale du dataset",
+    "text": "2.2 Statistique générale du dataset\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n2.2.1 Compter les occurrences par catégorie\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "index.html#statistiques-dâge-par-statut-de-violence",
+    "href": "index.html#statistiques-dâge-par-statut-de-violence",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "3.1 Statistiques d’âge par statut de violence",
+    "text": "3.1 Statistiques d’âge par statut de violence\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nL’analyse de la distribution de l’âge montre que les femmes victimes de violence domestique sont réparties sur une plage d’âge plus large que les non victimes. Alors que les femmes non victimes sont majoritairement concentrées entre 20 et 30 ans, les victimes présentent une distribution étendue jusqu’à 50 ans et plus. Cela suggère que l’âge, bien qu’informatif, ne constitue pas à lui seul un facteur discriminant, mais pourrait interagir avec d’autres variables socio-économiques et familiales.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLe boxplot montre que la médiane d’âge des femmes ayant déclaré des violences domestiques est légèrement plus élevée que celle des femmes n’en ayant pas déclaré, indiquant que les femmes victimes sont en moyenne plus âgées ,Par ailleurs 50 % des femmes non-victimes ont un âge compris entre 23 et 35 ans, tandis que 50 % des victimes ont un âge compris entre 25 et 44 ans. Le chevauchement des boîtes entre 25 et 35 ans indique que certaines femmes de cette tranche d’âge sont présentes dans les deux groupes, ce qui suggère que l’âge seul ne constitue pas un facteur explicatif suffisant de la violence domestique."
+  },
+  {
+    "objectID": "index.html#statistiques-deducations-par-status-de-violence",
+    "href": "index.html#statistiques-deducations-par-status-de-violence",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "3.2 Statistiques d’educations par status de violence",
+    "text": "3.2 Statistiques d’educations par status de violence\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nInterprétation : L’analyse montre que les femmes ayant un niveau d’éducation primaire présentent la plus forte proportion de victimes de violence au sein de leur groupe. À l’inverse, les femmes ayant un niveau secondaire ou tertiaire ont une proportion de victimes plus faible, ce qui suggère que le risque de violence diminue avec le niveau d’éducation."
+  },
+  {
+    "objectID": "index.html#statistiques-de-status-demploi-par-status-de-violence",
+    "href": "index.html#statistiques-de-status-demploi-par-status-de-violence",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "3.3 Statistiques de status d’emploi par status de violence",
+    "text": "3.3 Statistiques de status d’emploi par status de violence\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nL’analyse révèle que les femmes au chômage concentrent la majorité des cas de violence, représentant 87 % de l’ensemble des femmes victimes. Par ailleurs, la proportion de victimes rapportée à l’effectif total de ce groupe est également la plus élevée de 27% , indiquant que l’emploi pourrait jouer un rôle protecteur vis-à-vis de l’exposition à la violence."
+  },
+  {
+    "objectID": "index.html#statistique-de-revenue-par-status-de-violence",
+    "href": "index.html#statistique-de-revenue-par-status-de-violence",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "3.4 Statistique de revenue par status de violence",
+    "text": "3.4 Statistique de revenue par status de violence\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLe tableau montre les statistiques descriptives du revenu des femmes selon qu’elles ont été victimes de violence (yes) ou non (no) :\nRevenu moyen : Les femmes victimes de violence ont un revenu moyen (915) beaucoup plus faible que celles qui n’ont pas été victimes (2505), suggérant que les victimes tendent à avoir des revenus plus bas.\nMédiane : La médiane est de 0 pour les deux groupes, ce qui indique que la moitié des femmes dans chaque groupe a un revenu nul ou très faible.\nÉcart-type : La dispersion des revenus est plus grande pour les femmes non victimes (6296) que pour les victimes (3331), ce qui montre que le revenu des non victimes varie davantage.\nEffectifs (n) : Le groupe des femmes non victimes est plus nombreux (261) que celui des victimes (86). ## Statisqtique des femmes avec emploi ou semi-emploi et le revenu avec le status de violence\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDans cette analyse, nous avons découvert quelque chose de crucial : les femmes victimes de violence gagnent en moyenne deux fois moins que les autres. Leur boîte rouge est plus basse sur le graphique, ce qui signifie que leurs revenus sont concentrés près de zéro. même un petit revenu de 500€ par mois fait une différence. Ce n’est pas une question de richesse, c’est une question d’indépendance. Une femme qui a ne serait-ce qu’un petit revenu a plus de choix, plus de possibilités de partir si nécessaire."
+  },
+  {
+    "objectID": "index.html#statistique-par-status-marital",
+    "href": "index.html#statistique-par-status-marital",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "3.5 Statistique par status marital",
+    "text": "3.5 Statistique par status marital\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLes femmes mariées ont une proportion de victimes beaucoup plus élevée de 27.7% que les femmes non mariées . Cela suggère que le statut marital, et particulièrement le mariage, est associé à un risque plus élevé de violence Les barres représentant les femmes non mariées sont plus dominées par la catégorie “non victimes”, indiquant un risque plus faible."
+  },
+  {
+    "objectID": "index.html#revenu-statut-marital-violence",
+    "href": "index.html#revenu-statut-marital-violence",
+    "title": "Exploration statistique de la violence domestique envers les femmes à partir de données sociales",
+    "section": "3.6 Revenu × Statut marital × Violence",
+    "text": "3.6 Revenu × Statut marital × Violence\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n3.6.1 Âge × Statut marital × Violence (âge contextuel)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nFemmes mariées: La violence touche toutes les tranches d’âge, ce qui montre que le risque n’est pas limité à une tranche spécifique. La proportion la plus élevée se situe dans la tranche &gt;45 ans, suggérant que les femmes plus âgées mariées sont particulièrement exposées. Cela peut refléter une exposition cumulative au fil du temps ou des facteurs liés à la durée du mariage. Femmes non mariées: Le pourcentage de victimes reste relativement faible, inférieur à 10% pour la tranche 15-24 ans. Cela indique que le mariage est associé à un risque accru de violence, alors que les femmes célibataires, divorcées ou veuves présentent des proportions beaucoup plus faibles.\n\n\n3.6.2 status marital x emploi\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLes proportions de victimes sont nettement plus élevées, quel que soit le statut d’emploi :\nEmploi : 25%\nSemi-emploi : 13,9%\nChômage : 30%\nLes femmes mariées au chômage sont donc le groupe le plus vulnérable, avec un risque de violence presque triple par rapport aux femmes non mariées au chômage.\nMême les femmes mariées ayant un emploi ou un semi-emploi présentent des proportions plus élevées que leurs homologues non mariées, ce qui suggère que le mariage est associé à un risque accru, indépendamment de l’emploi."
+  }
+]
